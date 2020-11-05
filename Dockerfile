@@ -29,12 +29,13 @@ RUN set -ex ;\
           bison \
           build-essential \
           ca-certificates \
-          ccache \
           curl \
           clang \
           flex \
-          g++-multilib \
-          gcc-multilib \
+          #g++-multilib 
+          gcc-aarch64-linux-gnu \
+          gcc-arm-linux-gnueabi \
+          #gcc-multilib 
           git \
           gnupg \
           gperf \
@@ -42,21 +43,24 @@ RUN set -ex ;\
           lib32ncurses5-dev \
           lib32readline-dev \
           lib32z1-dev \
-          #libesd0-dev \
+          #libesd0-dev 
           liblz4-tool \
           libncurses5 \
           libncurses5-dev \
           libsdl1.2-dev \
           libssl-dev \
-          #libwxgtk3.0-gtk3-dev \
+          #libwxgtk3.0-gtk3-dev 
           libxml2 \
           libxml2-utils \
+          llvm \
+          llvm-dev \
           lzop \
-          #openjdk-11-jdk \
+          #openjdk-11-jdk 
           pngcrush \
           rsync \
           schedtool \
           squashfs-tools \
+          unzip \
           xsltproc \
           zip \
           zlib1g-dev \
@@ -77,6 +81,10 @@ RUN set -ex ;\
 	      sudo \
           ;\
     rm -rf /var/lib/apt/lists/*
+
+# fix the link to LLVMGold.so
+# RUN ln -s /usr/lib/llvm-11/lib/LLVMgold.so /lib/LLVMgold.so
+
 
 # run config in a seperate layer so we cache it
 RUN set -ex ;\

@@ -154,11 +154,6 @@ function init {
         fi
     done <<< "$(set | grep -oP '^\w*EXTRA_DOWNLOAD_\w*(?==)')"
 
-    if [[ "$USE_CCACHE" == "1" ]]; then
-        echo "[INFO] Enable caching at '$CCACHE_DIR' with $CCACHE_SIZE"
-        prebuilts/misc/linux-x86/ccache/ccache -M $CCACHE_SIZE
-    fi
-
     echo "[INFO] Setup 'build/envsetup.sh'"
     # https://askubuntu.com/questions/650820/permission-denied-when-running-sh-file
     chmod u+x build/envsetup.sh
@@ -212,14 +207,11 @@ function build {
     echo "[INFO] Building LineageOS ..."
     shopt -s expand_aliases
     source $BASE_DIR/build/envsetup.sh
-    if [[ "$USE_CCACHE" == "1" ]]; then
-        prebuilts/misc/linux-x86/ccache/ccache -M $CCACHE_SIZE
-    fi
     # starts configuration
     breakfast $DEVICE_CODENAME
     # starts building
     croot
-    brunch $DEVICE_CODENAME
+    brunch lineage_$DEVICE_CODENAME-$BUILD_VARIANT
 
     if [[ ! -z $POST_BUILD_SCRIPT ]]; then
         echo "[INFO] Run post-build script"

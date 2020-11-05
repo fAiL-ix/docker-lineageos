@@ -1,2 +1,5 @@
 lineageos/*
+android/*
 !.keep
+custom.env
+output.txt
