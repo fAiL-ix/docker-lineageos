@@ -1,9 +1,8 @@
 # docker-lineageos
 
-[![Docker Stars](https://img.shields.io/docker/stars/jfloff/lineageos.svg)][hub]
-[![Docker Pulls](https://img.shields.io/docker/pulls/jfloff/lineageos.svg)][hub]
 
-[hub]: https://hub.docker.com/r/jfloff/lineageos/
+This is a fork of [jfloff/docker-lineageos](https://github.com/jfloff/docker-lineageos)
+
 
 Docker container for building [LineageOS](https://lineageos.org/) (formerly known as CyanogenMod).
 
@@ -89,6 +88,7 @@ Here is a list of devices that have configuration files available (check [`devic
 - `bacon` (thanks @GRBurst)
 - `mako` (thanks @brainstorm)
 - `cancro` (thanks Oguz Ersen - via email)
+- `libra`
 
 _**Feel free to open a PR to submit another device configuration.**_
 
@@ -122,10 +122,7 @@ Here is a rundown of all the variables that you can set.
 | **`LINEAGEOS_LOCAL_MANIFEST_BRANCH`** | LineageOS local manifest branch. | *optional* | |
 | **`PROPRIETARY_BLOBS_REPO`** | Repo with the [device's proprietary blobs](https://wiki.lineageos.org/devices/klte/build#extract-proprietary-blobs). <br>*Example*: `https://github.com/TheMuppets/proprietary_vendor_samsung` |  *optional* | |
 | **`PROPRIETARY_BLOBS_DIR`** | Directory to where the repo with the device's blobs will be cloned to. <br>*Example*: `$BASE_DIR/vendor/samsung` | *optional* | |
-| **`USE_CCACHE`** | Turn on caching to speed up build (see [more](https://wiki.lineageos.org/devices/klte/build#turn-on-caching-to-speed-up-build)) | *optional* | `1` |
-| **`CCACHE_SIZE`** | Maximum amount of cache disk space allowed | *optional* | `50G` |
-| **`CCACHE_COMPRESS`** | Enable the `ccache` compression | *optional* | `1` |
-| **`CCACHE_DIR`** | Directory used for caching | *optional* | `$BASE_DIR/cache` |
+| **`BUILD_TYPE`** | Which type you want to build. valid values: eng, userdebug and user | *optional* | `userdebug` |
 | **`ANDROID_JACK_VM_ARGS`** | Fixes [out-of-memory error for Jack compiler](https://wiki.lineageos.org/devices/klte/build#configure-jack). Increase the assigned memory if necessary | *optional* | `"-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx4G"` |
 | **`WITH_SU`** | Builds rom with root access | *optional* | `false` |
 | **`PRE_SYNC_SCRIPT`** | Path to script to run before `sync`. <br>*Example*: `/home/scripts/pre_sync.sh` | *optional* |  |
